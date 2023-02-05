@@ -23,13 +23,17 @@ export default function Todo() {
 
   const addItem = () => {
     if(todo) {
-      const preList: User = todoList;
+      let preList: User = todoList;
       const data = {
         id:preList.length + 1,
         value:todo,
         done:false
       }
-      preList.unshift(data);
+      if(!preList.length) {
+        preList = [data];
+      } else {
+        preList.unshift(data);
+      }
       setTodo('');
       setTodoList(preList);
     } 
